@@ -23,14 +23,13 @@ class App extends Component {
     const { monsters, searchText } = this.state;
     const filteredMonsters = monsters.filter(
       (monster) =>
-        !!searchText ||
         monster.name.toLowerCase().includes(searchText.toLowerCase())
     );
 
     return (
       <div className="App">
         <SearchBox
-          textToSearch={this.state.searchText}
+          textToSearch={searchText}
           updateSearchTermListener={(newSearchTerm) =>
             this.setState({ searchText: newSearchTerm })
           }
