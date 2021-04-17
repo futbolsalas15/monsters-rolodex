@@ -19,20 +19,22 @@ class App extends Component {
     this.setState({ monsters: await response.json() });
   }
 
+  updateSearchText = (newSearchTerm) => {
+    this.setState({ searchText: newSearchTerm });
+  };
+
   render() {
     const { monsters, searchText } = this.state;
-    const filteredMonsters = monsters.filter(
-      (monster) =>
-        monster.name.toLowerCase().includes(searchText.toLowerCase())
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchText.toLowerCase())
     );
 
     return (
       <div className="App">
+        <h1>Monsters Rolodex</h1>
         <SearchBox
           textToSearch={searchText}
-          updateSearchTermListener={(newSearchTerm) =>
-            this.setState({ searchText: newSearchTerm })
-          }
+          updateSearchTermListener={this.updateSearchText}
         />
         <CardList monsters={filteredMonsters}></CardList>
       </div>
